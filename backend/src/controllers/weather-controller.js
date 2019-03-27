@@ -10,21 +10,36 @@ exports.get = (req, res, next) => {
 
         getWeather(req.query.weather1)
             .then(data => {
-                city1.push(data.cod, data.main.temp)
+                city1.push(data.cod, data)
             }).then(
                 getWeather(req.query.weather2)
                     .then(data => {
-                        city2.push(data.cod, data.main.temp)
+                        city2.push(data.cod, data)
                     }).then(
                         getWeather(req.query.weather3)
                             .then(data => {
-                                city3.push(data.cod, data.main.temp)
+                                city3.push(data.cod, data)
                             }).then(() => {
                                 if (city1[0] === 200 && city2[0] == 200 && city3[0] == 200) {
                                     res.status(200).send({
-                                        [capitalize(req.query.weather1)]: [{ "weatherF": city1[1], "weatherC": convertToCelsius(city1[1]) }],
-                                        [capitalize(req.query.weather2)]: [{ "weatherF": city2[1], "weatherC": convertToCelsius(city2[1]) }],
-                                        [capitalize(req.query.weather3)]: [{ "weatherF": city3[1], "weatherC": convertToCelsius(city3[1]) }]
+                                        [capitalize(req.query.weather1)]:
+                                            [{
+                                                "weatherC": convertToCelsius(city1[1].main.temp),
+                                                "sunrise": convertTimestampToHour(city1[1].sys.sunrise),
+                                                "sunset": convertTimestampToHour(city1[1].sys.sunset)
+                                            }],
+                                        [capitalize(req.query.weather2)]:
+                                            [{
+                                                "weatherC": convertToCelsius(city2[1].main.temp),
+                                                "sunrise": convertTimestampToHour(city2[1].sys.sunrise),
+                                                "sunset": convertTimestampToHour(city2[1].sys.sunset)
+                                            }],
+                                        [capitalize(req.query.weather3)]:
+                                            [{
+                                                "weatherC": convertToCelsius(city3[1].main.temp),
+                                                "sunrise": convertTimestampToHour(city3[1].sys.sunrise),
+                                                "sunset": convertTimestampToHour(city3[1].sys.sunset)
+                                            }]
                                     })
                                 }
                                 else if (city1[0] == 400 || city2[0] == 400 || city3[0] == 400) {
@@ -54,6 +69,14 @@ function convertToCelsius(tempF) {
             ((tempF - 32) * (5 / 9))
         )
     )
+}
+
+function convertTimestampToHour(timestamp) {
+    var hours = new Date(timestamp * 1000);
+    var hours_string = hours.toLocaleString()
+    var hours_string_parsed = hours_string.split(" ")[1];
+
+    return hours_string_parsed
 }
 
 function capitalize(string) {
