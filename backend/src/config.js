@@ -1,3 +1,3 @@
 module.exports = {
-    weatherToken: 'e38b266ae32047bf6700d2ea79f42420'
+    weatherToken: '0b8023969c94098f793d06159751286f'
 }

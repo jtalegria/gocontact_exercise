@@ -50,8 +50,8 @@ function getWeather(city) {
 
 function convertToCelsius(tempF) {
     return (
-        parseFloat(
-            ((tempF - 32) * (5 / 9)).toFixed(2)
+        Math.round(
+            ((tempF - 32) * (5 / 9))
         )
     )
 }
