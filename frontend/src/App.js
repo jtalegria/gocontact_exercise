@@ -58,8 +58,7 @@ class App extends Component {
           <button onClick={(e) => this.handleSubmit(e)}>Send</button>
         </form>
 
-        {this.state.submitted ? <WeatherAPI city1={this.state.city1} city2={this.state.city2}  city3={this.state.city3}/> : null}
-
+        {this.state.submitted ? <WeatherAPI city1={this.state.city1} city2={this.state.city2} city3={this.state.city3} /> : null}
 
       </main >
     )

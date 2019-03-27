@@ -6,6 +6,7 @@
     "chart.js": "^2.8.0",
     "chartjs-plugin-datalabels": "^0.6.0",
     "react": "^16.8.5",
+    "react-bootstrap-table-next": "^3.0.3",
     "react-chartjs-2": "^2.7.5",
     "react-dom": "^16.8.5",
     "react-scripts": "2.1.8"

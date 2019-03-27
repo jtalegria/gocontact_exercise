@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import ColumnChart from '../components/ColumnChart';
 import Graph from '../components/Graph';
 import Loader from '../components/Loader';
+import Table from "../components/Table"
 
 class WeatherAPI extends Component {
     constructor(props) {
@@ -41,11 +42,13 @@ class WeatherAPI extends Component {
         return (
             <div>
                 {this.state.loading ? <Loader /> : null}
-            
 
                 {xx === `{}` || xx === `{"error":"BAD REQUEST"}`
                     ? <p>Try again!</p>
-                    : <Graph results={this.state.results} city1={city1} city2={city2} city3={city3} />}
+                    : <div>
+                        <Graph results={this.state.results} city1={city1} city2={city2} city3={city3} />
+                        <Table results={this.state.results} city1={city1} city2={city2} city3={city3} />
+                    </div>}
             </div>
 
         )
