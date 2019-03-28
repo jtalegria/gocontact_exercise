@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
+//import './App.css';
 import WeatherAPI from "./components/WeatherAPI"
+import StyledForm from "../src/styles/Form"
 
 class App extends Component {
   constructor() {
@@ -37,26 +38,43 @@ class App extends Component {
   render() {
     return (
       <main>
-        <form>
-          <input name="city1"
-            value={this.setState.city1}
-            onChange={this.handleChange}
-            placeholder="Weather City1" />
-          <br />
+        <StyledForm>
+          <ul>
+            <li>
+              <label for="city1">City 1</label>
+              <input type="text"
+                name="city1"
+                maxlength="100"
+                value={this.setState.city1}
+                onChange={this.handleChange}>
+              </input>
+            </li>
 
-          <input name="city2"
-            value={this.setState.city2}
-            onChange={this.handleChange}
-            placeholder="Weather City2" />
-          <br />
+            <li>
+              <label for="city2">City 2</label>
+              <input type="text"
+                name="city2"
+                maxlength="100"
+                value={this.setState.city1}
+                onChange={this.handleChange}>
+              </input>
+            </li>
 
-          <input name="city3"
-            value={this.setState.city3}
-            onChange={this.handleChange}
-            placeholder="Weather City3" />
-          <br />
-          <button onClick={(e) => this.handleSubmit(e)}>Send</button>
-        </form>
+            <li>
+              <label for="city3">City 3</label>
+              <input type="text"
+                name="city3"
+                maxlength="100"
+                value={this.setState.city1}
+                onChange={this.handleChange}>
+              </input>
+            </li>
+
+            <li>
+              <input type="button" onClick={(e) => this.handleSubmit(e)} value="Send" />
+            </li>
+          </ul>
+        </StyledForm>
 
         {this.state.submitted ? <WeatherAPI city1={this.state.city1} city2={this.state.city2} city3={this.state.city3} /> : null}
 

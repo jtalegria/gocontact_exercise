@@ -20,24 +20,29 @@ class Table extends Component {
                 dataField: 'city',
                 text: 'City',
                 sort: true,
-                headerSortingStyle
-            }, {
+                headerSortingStyle,
+                responsive: true
+
+            },
+            {
                 dataField: 'temp',
                 text: 'Temperature',
                 sort: true,
-                headerSortingStyle
+                headerSortingStyle,
+                responsive: true
             },
             {
                 dataField: 'sunrise',
                 text: 'Sunrise',
                 sort: true,
-                headerSortingStyle
+                responsive: true
             },
             {
                 dataField: 'sunset',
                 text: 'Sunset',
                 sort: true,
-                headerSortingStyle
+                headerSortingStyle,
+                responsive: true
             }
         ];
 
@@ -62,15 +67,23 @@ class Table extends Component {
             }
         ]
 
+        const defaultSorted = [{
+            dataField: 'city',
+            order: 'asc'
+        }];
+
+
         return (
             <BootstrapTable
+                bootstrap4
                 keyField='city'
                 data={data}
                 columns={columns}
+
                 //striped
                 hover
-                condensed
-                defaultSortDirection="asc" />
+                //condensed
+                defaultSorted={defaultSorted} />
         )
     }
 }
