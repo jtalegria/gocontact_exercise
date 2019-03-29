@@ -1,12 +1,11 @@
 import styled from 'styled-components'
-//font-family: Georgia, "Times New Roman", Times, serif;
+
 const StyledForm = styled.form`
     max-width:400px;
     margin:50px auto;
     background:#fff;
     border-radius:2px;
-    padding:20px;
-    
+        
     h1{
         display: block;
         text-align: center;

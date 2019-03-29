@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 //import './App.css';
 import WeatherAPI from "./components/WeatherAPI"
+
 import StyledForm from "../src/styles/Form"
 
 class App extends Component {
@@ -76,7 +77,9 @@ class App extends Component {
           </ul>
         </StyledForm>
 
-        {this.state.submitted ? <WeatherAPI city1={this.state.city1} city2={this.state.city2} city3={this.state.city3} /> : null}
+        {this.state.submitted
+          ? <WeatherAPI city1={this.state.city1} city2={this.state.city2} city3={this.state.city3} />
+          : null}
 
       </main >
     )

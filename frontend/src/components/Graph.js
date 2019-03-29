@@ -7,13 +7,10 @@ export default class Graph extends Component {
         super()
     }
     render() {
-        let cidade1 = this.props.city1
-        let cidade2 = this.props.city2
-        let cidade3 = this.props.city3
-        let results = this.props.results
+        const {city1, city2, city3, results} = this.props
 
         let data = {
-            labels: [cidade1, cidade2, cidade3],
+            labels: [city1, city2, city3],
             datasets:
                 [
                     {
@@ -22,7 +19,7 @@ export default class Graph extends Component {
                         borderWidth: 1,
                         hoverBackgroundColor: '#8e8e8e',
                         hoverBorderColor: '#6a6a6a',
-                        data: [results[cidade1][0].weatherC, results[cidade2][0].weatherC, results[cidade3][0].weatherC]
+                        data: [results[city1][0].weatherC, results[city2][0].weatherC, results[city3][0].weatherC]
                     }
                 ]
         };
@@ -30,9 +27,11 @@ export default class Graph extends Component {
 
         return (
             <div>
-                //<h2>Line Example</h2>
                 <Bar ref="chart"
                     data={data}
+                    width={500}
+                    height={250}
+                    redraw={true}
                     options={{
                         plugins: {
                             datalabels: {
@@ -58,10 +57,5 @@ export default class Graph extends Component {
                 />
             </div >
         );
-    }
-
-    componentDidMount() {
-        const { datasets } = this.refs.chart.chartInstance.data
-        console.log(datasets[0].data);
     }
 }

@@ -8,19 +8,13 @@ class Table extends Component {
     }
 
     render() {
-        let cidade1 = this.props.city1
-        let cidade2 = this.props.city2
-        let cidade3 = this.props.city3
-        let results = this.props.results
-
-        const headerSortingStyle = { backgroundColor: '#b6bfbf' };
+        const {city1, city2, city3, results} = this.props
 
         const columns = [
             {
                 dataField: 'city',
                 text: 'City',
                 sort: true,
-                headerSortingStyle,
                 responsive: true
 
             },
@@ -28,7 +22,6 @@ class Table extends Component {
                 dataField: 'temp',
                 text: 'Temperature',
                 sort: true,
-                headerSortingStyle,
                 responsive: true
             },
             {
@@ -41,29 +34,28 @@ class Table extends Component {
                 dataField: 'sunset',
                 text: 'Sunset',
                 sort: true,
-                headerSortingStyle,
                 responsive: true
             }
         ];
 
         const data = [
             {
-                "city": cidade1,
-                "temp": results[cidade1][0].weatherC,
-                "sunrise": results[cidade1][0].sunrise,
-                "sunset": results[cidade1][0].sunset
+                "city": city1,
+                "temp": results[city1][0].weatherC,
+                "sunrise": results[city1][0].sunrise,
+                "sunset": results[city1][0].sunset
             },
             {
-                "city": cidade2,
-                "temp": results[cidade2][0].weatherC,
-                "sunrise": results[cidade2][0].sunrise,
-                "sunset": results[cidade2][0].sunset
+                "city": city2,
+                "temp": results[city2][0].weatherC,
+                "sunrise": results[city2][0].sunrise,
+                "sunset": results[city2][0].sunset
             },
             {
-                "city": cidade3,
-                "temp": results[cidade3][0].weatherC,
-                "sunrise": results[cidade3][0].sunrise,
-                "sunset": results[cidade3][0].sunset
+                "city": city3,
+                "temp": results[city3][0].weatherC,
+                "sunrise": results[city3][0].sunrise,
+                "sunset": results[city3][0].sunset
             }
         ]
 
@@ -79,7 +71,6 @@ class Table extends Component {
                 keyField='city'
                 data={data}
                 columns={columns}
-
                 //striped
                 hover
                 //condensed
