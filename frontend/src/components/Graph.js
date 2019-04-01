@@ -15,9 +15,9 @@ export default class Graph extends Component {
     //     )
     // }
 
-    update = (index) => {
-        this.props.action(index);
-      };
+    update = (label) => {
+        this.props.handlerLabel(label);
+    };
 
     render() {
         const { city1, city2, city3, results } = this.props
@@ -75,7 +75,7 @@ export default class Graph extends Component {
                                 var chartData = activePoints[0]['_chart'].config.data;
                                 var label = chartData.labels[idx];
                                 console.log("GRAPH " + label)
-                                this.update(idx)
+                                this.update(label)
                             }
                         }
                     }}

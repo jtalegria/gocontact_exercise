@@ -6,8 +6,13 @@ class Table extends Component {
     constructor(props) {
         super()
     }
-
+    componentDidMount() {
+        this.setState({
+            key: Math.random()
+        })
+    }
     render() {
+        console.log("TABLE PROPS: " + this.props.cityLabel)
         const { city1, city2, city3, results } = this.props
 
         const columns = [
@@ -71,8 +76,6 @@ class Table extends Component {
                 backgroundColor: '#c8e6c9'
             }
         };
-
-        console.log("TABLE " + this.props.cityLabel)
 
         return (
             <BootstrapTable

@@ -11,7 +11,7 @@ class WeatherAPI extends Component {
         this.state = {
             loading: false,
             results: {},
-            tableClickLabel: ""
+            graphClickedLabel: ""
         }
         this.handlerLabel = this.handlerLabel.bind(this);
     }
@@ -27,21 +27,20 @@ class WeatherAPI extends Component {
                 })
             })
     }
-    
+
     handlerLabel = cityLabel => {
         this.setState({
-            tableClickIndex: cityLabel
+            graphClickedLabel: cityLabel,
         })
     }
 
     render() {
         const { city1, city2, city3 } = this.props
-        const { loading, results, tableClickLabel } = this.state
+        const { loading, results, graphClickedLabel } = this.state
         const json_string = JSON.stringify(results)
         //const {action} = this.props
 
-
-        console.log(results)
+        console.log(this.state.graphClickedLabel)
 
         if (loading) {
             return (<CenteredDiv><Loader /></CenteredDiv>)
@@ -56,14 +55,13 @@ class WeatherAPI extends Component {
                     </CenteredDiv>
                 )
             }
-            
+
             else {
                 return (
                     <div>
                         <CenteredDiv>
-                            <div id="chart"><Graph results={results} city1={city1} city2={city2} city3={city3} action={this.handlerLabel}/></div>
-                            <div id="table"><Table results={results} city1={city1} city2={city2} city3={city3} cityLabel={tableClickLabel}/></div>
-                        </CenteredDiv>
+                            <div id="chart"><Graph results={results} city1={city1} city2={city2} city3={city3} handlerLabel={this.handlerLabel} /></div>
+                            <div id="table"><Table results={results} city1={city1} city2={city2} city3={city3} cityLabel={graphClickedLabel} /></div>                        </CenteredDiv>
                     </div>
                 )
             }
