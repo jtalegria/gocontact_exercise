@@ -29,18 +29,21 @@ class WeatherAPI extends Component {
     }
 
     handlerLabel = cityLabel => {
-        this.setState({
-            graphClickedLabel: cityLabel,
-        })
+        if (cityLabel === this.state.graphClickedLabel) {
+            this.setState({
+                graphClickedLabel: ""
+            })
+        } else {
+            this.setState({
+                graphClickedLabel: cityLabel,
+            })
+        }
     }
 
     render() {
         const { city1, city2, city3 } = this.props
         const { loading, results, graphClickedLabel } = this.state
         const json_string = JSON.stringify(results)
-        //const {action} = this.props
-
-        console.log(this.state.graphClickedLabel)
 
         if (loading) {
             return (<CenteredDiv><Loader /></CenteredDiv>)
@@ -50,7 +53,6 @@ class WeatherAPI extends Component {
             if (results.error === "BAD REQUEST") {
                 return (
                     <CenteredDiv>
-                        {/*action */}
                         <p>Try again!</p>
                     </CenteredDiv>
                 )
@@ -61,7 +63,8 @@ class WeatherAPI extends Component {
                     <div>
                         <CenteredDiv>
                             <div id="chart"><Graph results={results} city1={city1} city2={city2} city3={city3} handlerLabel={this.handlerLabel} /></div>
-                            <div id="table"><Table results={results} city1={city1} city2={city2} city3={city3} cityLabel={graphClickedLabel} /></div>                        </CenteredDiv>
+                            <div id="table"><Table results={results} city1={city1} city2={city2} city3={city3} cityLabel={graphClickedLabel} /></div>
+                        </CenteredDiv>
                     </div>
                 )
             }

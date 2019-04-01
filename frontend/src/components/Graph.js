@@ -21,6 +21,7 @@ export default class Graph extends Component {
 
     render() {
         const { city1, city2, city3, results } = this.props
+        const self = this
 
         let data = {
             labels: [city1, city2, city3],
@@ -51,9 +52,11 @@ export default class Graph extends Component {
                                 color: 'black'
                             }
                         },
-                        responsive: false, maintainAspectRatio: true,
+                        responsive: false, 
+                        maintainAspectRatio: true,
                         tooltips: { enabled: false },
                         hover: { label: null },
+                        animation: false,
                         legend: {
                             display: false
                         },
@@ -71,11 +74,10 @@ export default class Graph extends Component {
                         onClick: function (evt) {
                             var activePoints = this.getElementsAtEvent(evt);
                             if (activePoints[0]) {
-                                var idx = activePoints[0]['_index'];
-                                var chartData = activePoints[0]['_chart'].config.data;
-                                var label = chartData.labels[idx];
-                                console.log("GRAPH " + label)
-                                this.update(label)
+                                const idx = activePoints[0]['_index'];
+                                const chartData = activePoints[0]['_chart'].config.data;
+                                const label = chartData.labels[idx];
+                                self.update(label)
                             }
                         }
                     }}

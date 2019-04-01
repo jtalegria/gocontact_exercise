@@ -70,10 +70,10 @@ class Table extends Component {
         }];
 
         const selectRow = {
-            mode: 'checkbox',
+            mode: 'radio',
             selected: [this.props.cityLabel],
             style: {
-                backgroundColor: '#c8e6c9'
+                backgroundColor: 'rgba(178,178,178, 0.6)'
             }
         };
 
@@ -87,7 +87,8 @@ class Table extends Component {
                 hover
                 //condensed
                 selectRow={selectRow}
-                defaultSorted={defaultSorted} />
+                //defaultSorted={defaultSorted} 
+            />
         )
     }
 }
