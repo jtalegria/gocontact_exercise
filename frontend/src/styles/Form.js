@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 const StyledForm = styled.form`
     max-width:400px;
-    margin:50px auto;
+    /* margin:50px auto; */
+    margin: 10px 0px 25px 0px
     background:#fff;
     border-radius:2px;
         
