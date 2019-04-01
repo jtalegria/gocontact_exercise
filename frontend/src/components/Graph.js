@@ -6,8 +6,21 @@ export default class Graph extends Component {
     constructor(props) {
         super()
     }
+
+    // clickFunction(e) {
+    //     return (
+    //         alert(
+    //             JSON.stringify(e)
+    //         )
+    //     )
+    // }
+
+    update = (index) => {
+        this.props.action(index);
+      };
+
     render() {
-        const {city1, city2, city3, results} = this.props
+        const { city1, city2, city3, results } = this.props
 
         let data = {
             labels: [city1, city2, city3],
@@ -23,7 +36,6 @@ export default class Graph extends Component {
                     }
                 ]
         };
-
 
         return (
             <div>
@@ -47,10 +59,24 @@ export default class Graph extends Component {
                         },
                         scales: {
                             yAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Temperature (ºC)'
+                                },
                                 ticks: {
                                     beginAtZero: true
                                 }
                             }]
+                        },
+                        onClick: function (evt) {
+                            var activePoints = this.getElementsAtEvent(evt);
+                            if (activePoints[0]) {
+                                var idx = activePoints[0]['_index'];
+                                var chartData = activePoints[0]['_chart'].config.data;
+                                var label = chartData.labels[idx];
+                                console.log("GRAPH " + label)
+                                this.update(idx)
+                            }
                         }
                     }}
 

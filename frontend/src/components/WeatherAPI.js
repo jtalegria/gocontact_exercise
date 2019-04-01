@@ -10,11 +10,13 @@ class WeatherAPI extends Component {
         super()
         this.state = {
             loading: false,
-            results: {}
+            results: {},
+            tableClickLabel: ""
         }
+        this.handlerLabel = this.handlerLabel.bind(this);
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.setState({ loading: true })
         fetch(`http://127.0.0.1:8000/weather/?weather1=${this.props.city1}&weather2=${this.props.city2}&weather3=${this.props.city3}`)
             .then(response => response.json())
@@ -26,32 +28,46 @@ class WeatherAPI extends Component {
             })
     }
     
+    handlerLabel = cityLabel => {
+        this.setState({
+            tableClickIndex: cityLabel
+        })
+    }
 
     render() {
-        const {city1, city2, city3} = this.props
-        const {loading, results} = this.state
+        const { city1, city2, city3 } = this.props
+        const { loading, results, tableClickLabel } = this.state
         const json_string = JSON.stringify(results)
+        //const {action} = this.props
 
-        if (loading){
-            return(<CenteredDiv><Loader /></CenteredDiv>)
+
+        console.log(results)
+
+        if (loading) {
+            return (<CenteredDiv><Loader /></CenteredDiv>)
         }
 
-        return (
-            <div>
-                {json_string === `{}` || json_string === `{"error":"BAD REQUEST"}`
-                    ? <CenteredDiv><p>Try again!</p></CenteredDiv>
-                    : <div>
-                        <CenteredDiv><h3>Results</h3></CenteredDiv>
-                        <div>
-                            <CenteredDiv>
-                                <div><Graph results={results} city1={city1} city2={city2} city3={city3} /></div>
-                                <div><Table results={results} city1={city1} city2={city2} city3={city3} /></div>
-                            </CenteredDiv>
-                        </div>
+        if (results) {
+            if (results.error === "BAD REQUEST") {
+                return (
+                    <CenteredDiv>
+                        {/*action */}
+                        <p>Try again!</p>
+                    </CenteredDiv>
+                )
+            }
+            
+            else {
+                return (
+                    <div>
+                        <CenteredDiv>
+                            <div id="chart"><Graph results={results} city1={city1} city2={city2} city3={city3} action={this.handlerLabel}/></div>
+                            <div id="table"><Table results={results} city1={city1} city2={city2} city3={city3} cityLabel={tableClickLabel}/></div>
+                        </CenteredDiv>
                     </div>
-                }
-            </div>
-        )
+                )
+            }
+        }
     }
 }
 

@@ -10,45 +10,21 @@ const CenteredDiv = styled.div`
         font-size: 2.5rem;
     }
 
-    #left {
-        flex-basis:50%;
-        order: 0
-    }
-    
-    #middle {
-        flex-basis:50%;
-        order: 1
-    }
-
-    #right {
-        flex-basis:50%;
-        order: 2 
-    }
-
     @media(max-width: 599px){       /* Phones */
         flex-direction: column;
         
         h1 {
             font-size: 1.75rem;
         }
-
-        #left{
-
-        }
-
         
-        #right{
-            order:-1
-        }
-
-        #sun{
-            width: 100px;
-            height: 100px;
+        #chart > div > canvas{
+            width: 375px !important;
+            height: 200px !important;
         }
     }
 
     @media(min-width: 600px), @media (min-width:768px){       /* iPad */
-        flex-direction: row;
+        flex-direction: column;
 
         #chart {
             flex-basis: 40%;
@@ -65,10 +41,8 @@ const CenteredDiv = styled.div`
         }
     }
 
-    @media (min-width: 992px){
+    @media (min-width: 992px){              /* PC */
         flex-direction: row;
-        h1 {
-            font-size: 4rem;
         }
     }
 

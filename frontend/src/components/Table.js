@@ -8,7 +8,7 @@ class Table extends Component {
     }
 
     render() {
-        const {city1, city2, city3, results} = this.props
+        const { city1, city2, city3, results } = this.props
 
         const columns = [
             {
@@ -64,6 +64,15 @@ class Table extends Component {
             order: 'asc'
         }];
 
+        const selectRow = {
+            mode: 'checkbox',
+            selected: [this.props.cityLabel],
+            style: {
+                backgroundColor: '#c8e6c9'
+            }
+        };
+
+        console.log("TABLE " + this.props.cityLabel)
 
         return (
             <BootstrapTable
@@ -74,6 +83,7 @@ class Table extends Component {
                 //striped
                 hover
                 //condensed
+                selectRow={selectRow}
                 defaultSorted={defaultSorted} />
         )
     }
