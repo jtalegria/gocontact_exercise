@@ -6,13 +6,8 @@ class Table extends Component {
     constructor(props) {
         super()
     }
-    componentDidMount() {
-        this.setState({
-            key: Math.random()
-        })
-    }
+
     render() {
-        console.log("TABLE PROPS: " + this.props.cityLabel)
         const { city1, city2, city3, results } = this.props
 
         const columns = [
@@ -70,7 +65,7 @@ class Table extends Component {
         }];
 
         const selectRow = {
-            mode: 'radio',
+            mode: 'checkbox',
             selected: [this.props.cityLabel],
             style: {
                 backgroundColor: 'rgba(178,178,178, 0.6)'

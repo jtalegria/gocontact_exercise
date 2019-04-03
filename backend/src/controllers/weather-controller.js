@@ -42,11 +42,6 @@ exports.get = (req, res, next) => {
                                             }]
                                     })
                                 }
-                                else if (city1[0] == 400 || city2[0] == 400 || city3[0] == 400) {
-                                    res.status(400).send({
-                                        'error': data.message
-                                    })
-                                }
                                 else {
                                     res.status(404).send({
                                         'error': 'BAD REQUEST'
@@ -55,6 +50,11 @@ exports.get = (req, res, next) => {
                             })
                     )
             )
+    }
+    else {
+        res.status(400).send({
+            "message": "You must introduce 3 cities to proceed the request"
+        })
     }
 }
 
